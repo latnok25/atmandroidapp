@@ -145,7 +145,7 @@ public class Transaction extends AppCompatActivity {
             if (piny.equals(pin)){
                 /*Toast.makeText(getApplicationContext(), "correct Password",
                     Toast.LENGTH_SHORT).show();*/
-                confirm();
+                checkifthereismoney();
             } else{
                 if (counter==0){
                     wrongpin();
@@ -190,14 +190,19 @@ public class Transaction extends AppCompatActivity {
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-
-
+                        Toast.makeText(getApplicationContext(), "Transaction succesfull",
+                                Toast.LENGTH_LONG).show();
+                        int finalbalance = balance - mamount;
+                        shrefs.putInt("balance",finalbalance);
+                        shrefs.commit();
+                        shrefs.apply();
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
-                       // finish();
+                        Toast.makeText(getApplicationContext(), "Transaction aborted",
+                                Toast.LENGTH_LONG).show();
                     }
                 });
         android.app.AlertDialog alert = builder.create();
@@ -207,11 +212,14 @@ public class Transaction extends AppCompatActivity {
 
     public void checkifthereismoney(){
         balance = shref.getInt("balance",0);
-        mamount = Integer.parseInt(amount);
+        String replace = amount.replace("NGN","");
+        mamount = Integer.parseInt(replace);
         if (mamount>=balance){
-
+            Toast.makeText(getApplicationContext(), "NOT ENOUGH MONEY IN ACCOUNT TO WITHDRAW",
+                    Toast.LENGTH_LONG).show();
         } else if(balance - mamount <= 1000){
-
+            Toast.makeText(getApplicationContext(), "NOT ENOUGH MONEY IN ACCOUNT TO WITHDRAW",
+                    Toast.LENGTH_LONG).show();
         }
             else{
             confirm();

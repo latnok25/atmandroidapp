@@ -24,5 +24,14 @@ public class dashboard extends AppCompatActivity {
                     startActivity(intent);
                 }
         );
+
+        balance.setOnClickListener(
+                v -> {
+                    Intent intent = new Intent(dashboard.this,Balance.class);
+                    startActivity(intent);
+                }
+        );
     }
+
+
 }
