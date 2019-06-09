@@ -1,0 +1,2 @@
+﻿Download and install the app-realese.apk and follow the instructions on the read.md file on GitHub 
+On your settings page allow install from unknown sources.
