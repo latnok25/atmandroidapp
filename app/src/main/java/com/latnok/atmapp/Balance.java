@@ -17,7 +17,6 @@ public class Balance extends AppCompatActivity {
     private String pin,balance;
     public static boolean invalid = false;
     int counter = 3;
-    int isbalance;
     SharedPreferences shref;
 
 
@@ -55,7 +54,7 @@ public class Balance extends AppCompatActivity {
         no.setOnClickListener((View v) -> {
             pin = yes.getText().toString().trim();
             if (pin.isEmpty()) {
-                yes.setError("Valid Name is required");
+                yes.setError("Valid Pin is required");
                 yes.requestFocus();
             }else {
                 sendAndRequesttobank();

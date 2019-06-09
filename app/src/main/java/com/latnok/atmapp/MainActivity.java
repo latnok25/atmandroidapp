@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView headline;
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText editText,editText1;
     private String cardno,pinno;
     private  String balance = "30000";
+   public boolean invalid =false;
     int isbalance;
     SharedPreferences.Editor shref;
 
@@ -63,21 +65,32 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public static boolean isvalid(CharSequence pin){
+        return pin!=null;
+    }
+
     private void validatepin(){
 
         pinno = editText1.getText().toString().trim();
 
-        if(pinno.isEmpty()){
-            editText1.setError("pin Required");
-            editText1.requestFocus();
-        }
-        else{
-            isbalance = Integer.parseInt(balance);
-            shref.putInt("balance",isbalance);
-            shref.putString("pin",pinno);
-            shref.commit();
-            shref.apply();
-            movetonextactivity();
+        invalid = isvalid(pinno);
+
+
+        if(invalid == true) {
+
+
+
+            if (pinno.isEmpty()) {
+                editText1.setError("pin Required");
+                editText1.requestFocus();
+            } else {
+                isbalance = Integer.parseInt(balance);
+                shref.putInt("balance", isbalance);
+                shref.putString("pin", pinno);
+                shref.commit();
+                shref.apply();
+                movetonextactivity();
+            }
         }
     }
 
