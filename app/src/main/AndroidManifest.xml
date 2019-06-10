@@ -21,7 +21,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".dashboard" />
-        <activity android:name=".startactivity" />
         <activity android:name=".Transaction" />
         <activity android:name=".Balance"></activity>
     </application>
